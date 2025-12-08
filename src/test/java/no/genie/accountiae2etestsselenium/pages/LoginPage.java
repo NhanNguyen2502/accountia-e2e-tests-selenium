@@ -9,7 +9,7 @@ public class LoginPage extends LoginPageElements {
 
     public void loginInvalidEmail(String email, String password) {
         openURL(getValue("url"));
-        //Kểm tra message thông báo lỗi khi sai email
+        //Verify login page is displayed
         sendKeyToElement(emailTextbox, email);
         sendKeyToElement(passwordTextbox, password);
         clickElement(loginButton);
