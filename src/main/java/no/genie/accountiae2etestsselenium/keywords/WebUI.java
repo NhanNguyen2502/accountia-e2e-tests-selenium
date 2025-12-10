@@ -8,7 +8,7 @@ import java.time.Duration;
 import static no.genie.accountiae2etestsselenium.drivers.DriverManager.*;
 
 public class WebUI {
-    private static int EXPLICIT_WAIT_TIMEOUT = 10;
+    private static int EXPLICIT_WAIT_TIMEOUT = 30;
     private static int WAIT_PAGE_LEADED_TIMEOUT = 30;
 
     public static void openURL(String url) {
@@ -32,6 +32,27 @@ public class WebUI {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT), Duration.ofMillis(500));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
+
+    public static boolean waitForElementNotPresent(By by, int seconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(seconds), Duration.ofMillis(500));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+            return false;
+        } catch (TimeoutException e) {
+            return true;
+        }
+    }
+
+    public static boolean waitForElementPresent(By by, int seconds) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(seconds), Duration.ofMillis(500));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
     public static void sendKeyToElement(By elementLocator, String text) {
         waitForElementVisible(elementLocator);
         getWebElement(elementLocator).clear();

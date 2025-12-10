@@ -6,6 +6,8 @@ import no.genie.accountiae2etestsselenium.helpers.PropertiesHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.*;
 
 public class BaseSetup {
@@ -26,6 +28,9 @@ public class BaseSetup {
             case "chrome":
                 driver = innitChromeDriver();
                 break;
+            case "firefox":
+                driver = innitFirefoxDriver();
+                break;
             default:
                 System.out.println("Browser not supported. Launching Chrome as default.");
                 driver = innitChromeDriver();
@@ -42,9 +47,20 @@ public class BaseSetup {
             options.addArguments("--headless=new");
             options.addArguments("window-size=1800,900");
         }
-
         WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        return driver;
+    }
 
+    private WebDriver innitFirefoxDriver() {
+        System.out.println("Launching Firefox browser...");
+        //WebDriverManager.firefoxdriver().setup();
+        WebDriver driver = new FirefoxDriver();
+        FirefoxOptions options = new FirefoxOptions();
+        if (ConstantGlobal.HEADLESS == true) {
+            options.addArguments("--headless");
+            options.addArguments("window-size=1800,900");
+        }
         driver.manage().window().maximize();
         return driver;
     }
