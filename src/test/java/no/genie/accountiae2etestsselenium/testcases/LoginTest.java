@@ -10,9 +10,21 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseSetup {
 
     @Test
-    public void loginTestValidEmail() {
+    public void loginTestInvalidEmail() {
         LoginPage loginPage = new LoginPage();
-        loginPage.loginInvalidEmail(PropertiesHelper.getValue("email"), PropertiesHelper.getValue("password"));
+        loginPage.loginInvalidEmail(PropertiesHelper.getValue("invalid_email"), PropertiesHelper.getValue("password"));
+    }
+
+    @Test
+    public void loginTestInvalidPassword() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginInvalidEmail(PropertiesHelper.getValue("email"), PropertiesHelper.getValue("invalid_password"));
+    }
+
+    @Test
+    public void loginTestValid() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(PropertiesHelper.getValue("email"), PropertiesHelper.getValue("password"));
     }
 
 }
