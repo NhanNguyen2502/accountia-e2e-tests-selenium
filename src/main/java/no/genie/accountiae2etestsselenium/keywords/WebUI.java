@@ -5,11 +5,12 @@ import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
+import static no.genie.accountiae2etestsselenium.constant.ConstantGlobal.*;
 import static no.genie.accountiae2etestsselenium.drivers.DriverManager.*;
 
 public class WebUI {
-    private static int EXPLICIT_WAIT_TIMEOUT = 30;
-    private static int WAIT_PAGE_LEADED_TIMEOUT = 30;
+//    private static int EXPLICIT_WAIT_TIMEOUT = 30;
+//    private static int WAIT_PAGE_LEADED_TIMEOUT = 30;
 
     public static void openURL(String url) {
         getDriver().get(url);
@@ -29,7 +30,7 @@ public class WebUI {
     }
 
     public static void waitForElementVisible(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(EXPLICIT_WAIT_TIMEOUT), Duration.ofMillis(500));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(IMPLICIT_WAIT), Duration.ofMillis(500));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
@@ -57,5 +58,14 @@ public class WebUI {
         waitForElementVisible(elementLocator);
         getWebElement(elementLocator).clear();
         getWebElement(elementLocator).sendKeys(text);
+    }
+
+    public static void waitForPageLoaded() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(PAGE_LOAD_TIMEOUT), Duration.ofMillis(500));
+        try {
+            wait.until(webDriver -> ((JavascriptExecutor) getDriver()).executeScript("return document.readyState").equals("complete"));
+        } catch (TimeoutException e) {
+            logConsole("Timeout waiting for Page Load Request to complete after " + PAGE_LOAD_TIMEOUT + " seconds");
+        }
     }
 }
