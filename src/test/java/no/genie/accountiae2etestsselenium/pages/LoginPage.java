@@ -29,9 +29,11 @@ public class LoginPage extends LoginPageElements {
     public CompanyListPage login(String email, String password) {
         openURL(getValue("url"));
         //Verify login page is displayed
+        waitForPageLoaded();
         sendKeyToElement(emailTextbox, email);
         sendKeyToElement(passwordTextbox, password);
         clickElement(loginButton);
+        waitForPageLoaded();
         Assert.assertTrue(waitForElementPresent(companyListTitle, 30), "Login failed");
         return new CompanyListPage();
     }
