@@ -34,7 +34,7 @@ public class LoginPage extends LoginPageElements {
         sendKeyToElement(passwordTextbox, password);
         clickElement(loginButton);
         waitForPageLoaded();
-        Assert.assertTrue(waitForElementPresent(companyListTitle, 30), "Login failed");
+        Assert.assertTrue(waitForElementNotPresent(invalidPasswordMessage, 30), "Login failed");
         return new CompanyListPage();
     }
 

@@ -36,18 +36,29 @@ public class WebUI {
 
     public static boolean waitForElementNotPresent(By by, int seconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(seconds), Duration.ofMillis(500));
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(IMPLICIT_WAIT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
-            return false;
-        } catch (TimeoutException e) {
             return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public static boolean isElementDisabled(By elementLocator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(IMPLICIT_WAIT), Duration.ofMillis(500));
+            WebElement elementDisabled = getDriver().findElement(elementLocator);
+            return !elementDisabled.isEnabled();
+
+        } catch (TimeoutException e) {
+            return false;
         }
     }
 
     public static boolean waitForElementPresent(By by, int seconds) {
         try {
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(seconds), Duration.ofMillis(500));
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
             return true;
         } catch (TimeoutException e) {
             return false;
