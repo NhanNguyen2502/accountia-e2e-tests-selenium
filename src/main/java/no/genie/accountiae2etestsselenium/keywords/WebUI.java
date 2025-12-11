@@ -13,7 +13,8 @@ public class WebUI {
 //    private static int WAIT_PAGE_LEADED_TIMEOUT = 30;
 
     public static void openURL(String url) {
-        getDriver().get(url);
+        System.out.println("Open URL: " + System.getenv(url));
+        getDriver().get(System.getenv(url));
     }
 
     public static WebElement getWebElement(By elementLocator) {
