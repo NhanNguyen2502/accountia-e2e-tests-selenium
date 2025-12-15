@@ -66,8 +66,9 @@ public class BaseSetup {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
         if (DriverManager.getDriver() != null) {
+            Thread.sleep(2000);
             DriverManager.getDriver().quit();
         }
         // DriverManager.quit();

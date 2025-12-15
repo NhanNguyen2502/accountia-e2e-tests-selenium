@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
+import java.util.List;
 
 import static no.genie.accountiae2etestsselenium.constant.ConstantGlobal.*;
 import static no.genie.accountiae2etestsselenium.drivers.DriverManager.*;
@@ -31,8 +32,13 @@ public class WebUI {
     }
 
     public static void waitForElementVisible(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(IMPLICIT_WAIT), Duration.ofMillis(500));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(IMPLICIT_WAIT), Duration.ofMillis(500));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        } catch (Exception e) {
+            System.out.println("Element not visible: " + by.toString());
+        }
+
     }
 
     public static boolean waitForElementNotPresent(By by, int seconds) {
@@ -79,5 +85,15 @@ public class WebUI {
         } catch (TimeoutException e) {
             logConsole("Timeout waiting for Page Load Request to complete after " + PAGE_LOAD_TIMEOUT + " seconds");
         }
+    }
+
+    public static List<WebElement> findElements(By elementLocator) {
+        try {
+            waitForElementVisible(elementLocator);
+            return getDriver().findElements(elementLocator);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

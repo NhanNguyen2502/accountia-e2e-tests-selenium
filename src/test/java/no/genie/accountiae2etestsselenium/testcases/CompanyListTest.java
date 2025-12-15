@@ -23,4 +23,19 @@ public class CompanyListTest extends BaseSetup {
         companyListPage = loginPage.login(PropertiesHelper.getValue("maximum_company_email"), PropertiesHelper.getValue("password"));
         companyListPage.checkCreateRealAndDemoCompanyButtonDisabled();
     }
+
+    @Test
+    public void testDisableCompany() {
+        loginPage = new LoginPage();
+        companyListPage = loginPage.login(PropertiesHelper.getValue("maximum_company_email"), PropertiesHelper.getValue("password"));
+        companyListPage.disableCompany();
+    }
+
+    @Test
+    public void testEnableCompany() {
+        loginPage = new LoginPage();
+        companyListPage = loginPage.login(PropertiesHelper.getValue("maximum_company_email"), PropertiesHelper.getValue("password"));
+        companyListPage.enableCompany();
+    }
+
 }
