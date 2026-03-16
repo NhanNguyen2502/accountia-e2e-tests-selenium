@@ -2,7 +2,7 @@
 
 <suite name="Suite Login Test" verbose="1">
 
-    <test name="Login Test on Chrome" parallel="methods" >
+    <test name="Login Test on Chrome" parallel="methods" thread-count="2">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="no.genie.accountiae2etestsselenium.testcases.CompanyListTest">

@@ -8,7 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+
 
 public class BaseSetup {
 
@@ -18,7 +20,7 @@ public class BaseSetup {
     public void createDriver(@Optional("chrome") String browser) {
         WebDriver driver = setupDriver(browser);
         PropertiesHelper.getAllFiles();
-        //Set giá trị driver đã đc khởi tạo vào ThreadLocal
+        //Set driver value to ThreadLocal
         DriverManager.setDriver(driver);
     }
 
@@ -64,6 +66,7 @@ public class BaseSetup {
         driver.manage().window().maximize();
         return driver;
     }
+
 
     @AfterMethod
     public void tearDown() throws InterruptedException {

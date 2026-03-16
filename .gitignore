@@ -15,3 +15,5 @@ reports/
 *.avi
 *.zip
 *.iml
+.opencode/
+.settings/
