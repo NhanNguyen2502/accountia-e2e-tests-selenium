@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static no.genie.accountiae2etestsselenium.drivers.DriverManager.*;
+
 import static no.genie.accountiae2etestsselenium.keywords.WebUI.*;
 import static no.genie.accountiae2etestsselenium.constant.ConstantGlobal.*;
 
