@@ -8,9 +8,9 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="no.genie.accountiae2etestsselenium.testcases.LoginTest">
-                <methods>
-                    <include name="loginTestValid"/>
-                </methods>
+<!--                <methods>-->
+<!--                    <include name="loginTestValid"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>

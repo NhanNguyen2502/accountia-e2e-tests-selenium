@@ -29,8 +29,8 @@ public class TestFailureListener implements ITestListener {
 
         // 3. Gọi Gemini ai để phân tích
         System.out.println("🤖 Đang gửi log cho Gemini ai phân tích...");
-        String aiAnalysis = GeminiAIHelper.getInstance()
-                .analyzeTestFailure(result.getName(), errorMessage, currentUrl);
+        String aiAnalysis = GeminiAIHelper.analyzeTestFailure(result.getName(), errorMessage, currentUrl);
+        //GeminiAIHelper.getInstance().analyzeTestFailure(result.getName(), errorMessage, currentUrl);
 
         // 4. In kết quả ra console hoặc đính kèm vào Report
         System.out.println("\n--- 🧠 GEMINI ai ANALYSIS ---");
