@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "selenium": {
+      "source": "teachingai/full-stack-skills",
+      "sourceType": "github",
+      "computedHash": "705cdebfdc997259e793cd6f1af89d7963d41452b9f1c51bb941b1cc96de9880"
+    }
+  }
+}
