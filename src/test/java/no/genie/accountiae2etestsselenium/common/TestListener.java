@@ -1,12 +1,19 @@
 package no.genie.accountiae2etestsselenium.common;
 
 import no.genie.accountiae2etestsselenium.ai.GeminiAIHelper;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 
-public class TestFailureListener implements ITestListener {
+public class TestListener implements ITestListener {
 
+    @Override
+    public void onStart(ITestContext context) {
+        System.out.println("----------------------------------------------");
+        System.out.println("🚀 Starting Test Suite: " + context.getName());
+        System.out.println("----------------------------------------------");
+    }
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("❌ Test Failed: " + result.getName());
@@ -43,6 +50,7 @@ public class TestFailureListener implements ITestListener {
     // Các method khác của ITestListener có thể để trống
     @Override
     public void onTestStart(ITestResult result) {
+
     }
 
     @Override
