@@ -1,16 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite Login Test" verbose="1">
-<!--    <listeners>-->
-<!--        <listener class-name="no.genie.accountiae2etestsselenium.common.TestFailureListener"></listener>-->
-<!--    </listeners>-->
-    <test name="Login Test on Chrome" parallel="methods" thread-count="2">
+    <listeners>
+        <listener class-name="no.genie.accountiae2etestsselenium.common.TestListener"/>
+    </listeners>
+
+    <test name="Login Test on Chrome" parallel="methods" thread-count="3">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="no.genie.accountiae2etestsselenium.testcases.LoginTest">
-<!--                <methods>-->
-<!--                    <include name="loginTestValid"/>-->
-<!--                </methods>-->
+                <methods>
+                    <include name="loginTestValid"/>
+                </methods>
             </class>
         </classes>
     </test>

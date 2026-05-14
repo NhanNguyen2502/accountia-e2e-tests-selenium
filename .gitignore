@@ -17,3 +17,4 @@ reports/
 *.iml
 .opencode/
 .settings/
+.agents/

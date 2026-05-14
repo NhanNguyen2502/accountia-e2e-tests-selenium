@@ -12,6 +12,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import static no.genie.accountiae2etestsselenium.common.BrowserFactory.setUpdDriver;
+
 
 public class BaseSetup {
 
@@ -19,53 +21,10 @@ public class BaseSetup {
     @BeforeMethod
     @Parameters({"browser"})
     public void createDriver(@Optional("chrome") String browser) {
-        WebDriver driver = setupDriver(browser);
+        WebDriver driver = setUpdDriver(browser);
         PropertiesHelper.getAllFiles();
         //Set driver value to ThreadLocal
         DriverManager.setDriver(driver);
-    }
-
-    public WebDriver setupDriver(String browserName) {
-        WebDriver driver;
-        switch (browserName.trim().toLowerCase()) {
-            case "chrome":
-                driver = innitChromeDriver();
-                break;
-            case "firefox":
-                driver = innitFirefoxDriver();
-                break;
-            default:
-                System.out.println("Browser not supported. Launching Chrome as default.");
-                driver = innitChromeDriver();
-                break;
-        }
-        return driver;
-    }
-
-    private WebDriver innitChromeDriver() {
-        System.out.println("Launching Chrome browser...");
-        //WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        if (ConstantGlobal.HEADLESS == true) {
-            options.addArguments("--headless=new");
-            options.addArguments("window-size=1800,900");
-        }
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        return driver;
-    }
-
-    private WebDriver innitFirefoxDriver() {
-        System.out.println("Launching Firefox browser...");
-        //WebDriverManager.firefoxdriver().setup();
-        WebDriver driver = new FirefoxDriver();
-        FirefoxOptions options = new FirefoxOptions();
-        if (ConstantGlobal.HEADLESS == true) {
-            options.addArguments("--headless");
-            options.addArguments("window-size=1800,900");
-        }
-        driver.manage().window().maximize();
-        return driver;
     }
 
 
@@ -93,10 +52,9 @@ public class BaseSetup {
             System.out.println(aiAnalysis);
             System.out.println("-----------------------------\n");
         }
-        if (DriverManager.getDriver() != null) {
-            Thread.sleep(2000);
-            DriverManager.getDriver().quit();
-        }
-        // DriverManager.quit();
+
+        Thread.sleep(2000);
+        DriverManager.quit();
+
     }
 }

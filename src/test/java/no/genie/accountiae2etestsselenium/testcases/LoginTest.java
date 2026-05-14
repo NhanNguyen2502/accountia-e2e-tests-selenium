@@ -4,9 +4,10 @@ import no.genie.accountiae2etestsselenium.common.BaseSetup;
 import no.genie.accountiae2etestsselenium.constant.ConstantGlobal;
 import no.genie.accountiae2etestsselenium.helpers.PropertiesHelper;
 import no.genie.accountiae2etestsselenium.pages.LoginPage;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 
-
+@SpringBootTest
 public class LoginTest extends BaseSetup {
 
     @Test
